@@ -10,10 +10,15 @@
         <option value="$PROJECT_DIR$/mc-tc-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/mc-tc-discovery/pom.xml" />
         <option value="$PROJECT_DIR$/mc-tc-config/pom.xml" />
+        <option value="$PROJECT_DIR$/mc-tc-reservation/pom.xml" />
+        <option value="$PROJECT_DIR$/mc-tc-review/pom.xml" />
+        <option value="$PROJECT_DIR$/mc-tc-activity/pom.xml" />
+        <option value="$PROJECT_DIR$/mc-tc-agency/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/mc-tc-review/pom.xml" />
         <option value="$PROJECT_DIR$/mc-tc-tour/pom.xml" />
       </set>
     </option>
