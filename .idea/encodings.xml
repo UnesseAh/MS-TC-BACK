@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/mc-tc-activity/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mc-tc-agency/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mc-tc-config/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mc-tc-discovery/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mc-tc-gateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/mc-tc-reservation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mc-tc-review/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mc-tc-tour/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-tc-activity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-tc-agency/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-tc-config/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-tc-discovery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-tc-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ms-tc-reservation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
