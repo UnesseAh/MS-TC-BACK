@@ -1,6 +1,8 @@
 package com.tourconnect.mctcactivity.controller;
 
+import com.tourconnect.mctcactivity.agencies.AgencyRestClient;
 import com.tourconnect.mctcactivity.domain.Activity;
+import com.tourconnect.mctcactivity.model.Agency;
 import com.tourconnect.mctcactivity.service.Interfaces.ActivityService;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,18 +10,22 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/activities")
+@RequestMapping("/activities")
 public class ActivityController {
     private final ActivityService activityService;
-
-    public ActivityController(ActivityService activityService) {
+    private final AgencyRestClient agencyRestClient;
+    public ActivityController(ActivityService activityService, AgencyRestClient agencyRestClient) {
         this.activityService = activityService;
+        this.agencyRestClient = agencyRestClient;
     }
-
 
     @GetMapping
     public List<Activity> getAll(){
-        return activityService.getAll();
+        List<Activity> activities = activityService.getAll();
+        activities.forEach(activity -> {
+            activity.setAgency(agencyRestClient.findAgency(activity.getAgencyId()));
+        });
+        return activities;
     }
 
     @PostMapping
@@ -28,7 +34,14 @@ public class ActivityController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Activity> getAgency(@PathVariable Long id){
-        return activityService.findById(id);
+    public Optional<Activity> getActivity(@PathVariable Long id){
+        Optional<Activity> activity = activityService.findById(id);
+
+        if (activity.isPresent()){
+            Agency agency = agencyRestClient.findAgency(activity.get().getAgencyId());
+            activity.get().setAgency(agency);
+        }
+
+        return activity;
     }
 }
