@@ -41,3 +41,11 @@ ems-tc-reservation/src/main/java/com/tourconnect/mctcreservation/controller/Rese
 Sms-tc-gateway/src/main/java/com/tourconnect/mctcgateway/McTcGatewayApplication.java,2/2/2262d5a7e21687dcd586fa0892bc184a3a56afa6
 ˆ
 Xms-tc-activity/src/main/java/com/tourconnect/mctcactivity/agencies/AgencyRestClient.java,6/d/6d534bbe8e56e9f2f30ec553daa60a7546478856
+D
+ms-tc-config/pom.xml,a/a/aa0132e31011a9cc819415c38203b66f5a55b04d
+€
+Pms-tc-config/src/main/java/com/tourconnect/mctcconfig/McTcConfigApplication.java,d/a/daf7e2d00e9cb3119be52895f46657d8a52aa02f
+~
+Nms-tc-agency/src/main/java/com/tourconnect/mctcagency/config/GlobalConfig.java,d/1/d1aeffa916468d2721921dc74170068eba9de303
+Š
+Zms-tc-agency/src/main/java/com/tourconnect/mctcagency/controller/ConfigTestController.java,3/1/3158cc7f45829a3b3f2244bf203364ca17ccca43
