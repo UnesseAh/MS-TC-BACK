@@ -49,3 +49,9 @@ Pms-tc-config/src/main/java/com/tourconnect/mctcconfig/McTcConfigApplication.jav
 Nms-tc-agency/src/main/java/com/tourconnect/mctcagency/config/GlobalConfig.java,d/1/d1aeffa916468d2721921dc74170068eba9de303
 Š
 Zms-tc-agency/src/main/java/com/tourconnect/mctcagency/controller/ConfigTestController.java,3/1/3158cc7f45829a3b3f2244bf203364ca17ccca43
+J
+ms-tc-discovery/Dockerfile,9/b/9b6150e9794c397292d23ab83eaedcf3f44baf48
+B
+docker-compose.yml,3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a
+G
+ms-tc-config/Dockerfile,d/4/d4d85ddbf9afecb17b140c5dc3839b8b367a778e
