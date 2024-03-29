@@ -8,6 +8,7 @@ services:
       - '8761'
 #    healthcheck:
 #      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+#      interval: 10s
 
   ms-tc-config:
     build: ./ms-tc-config
@@ -16,8 +17,8 @@ services:
       - '9999:9999'
     expose:
       - '9999'
-#    environment:
-#      MS_TC_DISCOVERY_URL : http://ms-tc-discovery:8761/eureka
-#    depends_on:
-#      ms-tc-discovery:
+    environment:
+      - MS_TC_DISCOVERY_URL = http://ms-tc-discovery:8761/eureka
+    depends_on:
+      - ms-tc-discovery
 #        condition: service_healthy
