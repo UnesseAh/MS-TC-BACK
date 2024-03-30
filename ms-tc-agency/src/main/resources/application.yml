@@ -1,9 +1,0 @@
-server:
-  port: 8081
-
-spring:
-  application:
-    name: ms-tc-agency
-
-  config:
-    import: optional:configserver:http://localhost:9999

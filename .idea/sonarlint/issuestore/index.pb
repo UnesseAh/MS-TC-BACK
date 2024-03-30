@@ -55,3 +55,9 @@ B
 docker-compose.yml,3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a
 G
 ms-tc-config/Dockerfile,d/4/d4d85ddbf9afecb17b140c5dc3839b8b367a778e
+G
+ms-tc-agency/Dockerfile,4/e/4ef96d6cdb80132ab639506b22095841592c80ca
+I
+ms-tc-activity/Dockerfile,e/e/ee01a5b1a5a661ca0fff2623dad98a7b0496acd6
+L
+ms-tc-reservation/Dockerfile,d/b/db912f674324c2264e977fded56e4f188dcb4aff

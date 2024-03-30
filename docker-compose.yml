@@ -1,4 +1,13 @@
 services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=agencies
+      - POSTGRES_USER=youness
+      - POSTGRES_PASSWORD=admin
   ms-tc-discovery:
     build: ./ms-tc-discovery
     container_name: ms-tc-discovery
@@ -6,9 +15,9 @@ services:
       - '8761:8761'
     expose:
       - '8761'
-#    healthcheck:
-#      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
-#      interval: 10s
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 10s
 
   ms-tc-config:
     build: ./ms-tc-config
@@ -18,7 +27,28 @@ services:
     expose:
       - '9999'
     environment:
-      - MS_TC_DISCOVERY_URL = http://ms-tc-discovery:8761/eureka
+      - MS_TC_DISCOVERY_URL=http://ms-tc-discovery:8761/eureka
     depends_on:
-      - ms-tc-discovery
-#        condition: service_healthy
+      ms-tc-discovery:
+        condition: service_started
+
+  ms-tc-agency:
+    build: ./ms-tc-agency
+    container_name: ms-tc-agency
+    ports:
+      - '8081:8081'
+    expose:
+      - '8081'
+    environment:
+      - MS_TC_DISCOVERY_URL=http://ms-tc-discovery:8761/eureka
+      - MS_TC_CONFIG_URL=http://ms-tc-config:9999
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/agencies
+      - SPRING_DATASOURCE_USERNAME=youness
+      - SPRING_DATASOURCE_PASSWORD=admin
+    depends_on:
+      ms-tc-discovery:
+        condition: service_started
+      ms-tc-config:
+        condition: service_started
+      postgres:
+        condition: service_started
