@@ -1,13 +1,16 @@
 services:
+
   postgres:
     image: postgres
     container_name: postgres
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_DB=agencies
       - POSTGRES_USER=youness
       - POSTGRES_PASSWORD=admin
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+
   ms-tc-discovery:
     build: ./ms-tc-discovery
     container_name: ms-tc-discovery
@@ -17,7 +20,7 @@ services:
       - '8761'
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
-      interval: 10s
+      interval: 30s
 
   ms-tc-config:
     build: ./ms-tc-config
@@ -46,9 +49,54 @@ services:
       - SPRING_DATASOURCE_USERNAME=youness
       - SPRING_DATASOURCE_PASSWORD=admin
     depends_on:
-      ms-tc-discovery:
-        condition: service_started
       ms-tc-config:
         condition: service_started
-      postgres:
+
+
+  ms-tc-activity:
+    build: ./ms-tc-activity
+    container_name: ms-tc-activity
+    ports:
+      - '8082:8082'
+    expose:
+      - '8082'
+    environment:
+      - MS_TC_DISCOVERY_URL=http://ms-tc-discovery:8761/eureka
+      - MS_TC_CONFIG_URL=http://ms-tc-config:9999
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/activities
+      - SPRING_DATASOURCE_USERNAME=youness
+      - SPRING_DATASOURCE_PASSWORD=admin
+    depends_on:
+      ms-tc-config:
+        condition: service_started
+
+  ms-tc-reservation:
+    build: ./ms-tc-reservation
+    container_name: ms-tc-reservation
+    ports:
+      - '8083:8083'
+    expose:
+      - '8083'
+    environment:
+      - MS_TC_DISCOVERY_URL=http://ms-tc-discovery:8761/eureka
+      - MS_TC_CONFIG_URL=http://ms-tc-config:9999
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/reservations
+      - SPRING_DATASOURCE_USERNAME=youness
+      - SPRING_DATASOURCE_PASSWORD=admin
+    depends_on:
+      ms-tc-config:
+        condition: service_started
+
+  ms-tc-gateway:
+    build: ./ms-tc-gateway
+    container_name: ms-tc-gateway
+    ports:
+      - '8888:8888'
+    expose:
+      - '8888'
+    environment:
+      - MS_TC_DISCOVERY_URL=http://ms-tc-discovery:8761/eureka
+      - MS_TC_CONFIG_URL=http://ms-tc-config:9999
+    depends_on:
+      ms-tc-config:
         condition: service_started

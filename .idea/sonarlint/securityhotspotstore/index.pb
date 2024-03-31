@@ -61,3 +61,9 @@ I
 ms-tc-activity/Dockerfile,e/e/ee01a5b1a5a661ca0fff2623dad98a7b0496acd6
 L
 ms-tc-reservation/Dockerfile,d/b/db912f674324c2264e977fded56e4f188dcb4aff
+H
+ms-tc-gateway/Dockerfile,8/6/86b042ff4370895092cc3b1e3610445a867c7a77
+E
+ms-tc-gateway/pom.xml,0/8/0860499ba81e739171dbe5813e6376b0a4ac985f
+B
+init/databases.sql,c/6/c6356a9b8071edafa1e725b3998dc71772741424
