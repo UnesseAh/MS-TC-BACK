@@ -100,3 +100,11 @@ services:
     depends_on:
       ms-tc-config:
         condition: service_started
+
+  tourconnect-front:
+    build: ./tourconnect-front
+    container_name: tourconnect-front
+    ports:
+      - '80:80'
+    expose:
+      - '80'

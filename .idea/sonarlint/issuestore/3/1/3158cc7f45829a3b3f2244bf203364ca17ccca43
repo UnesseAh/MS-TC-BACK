@@ -1,3 +1,11 @@
 
-…
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8‚¥ƒÒç1J$3c46cd85-5dcd-4406-bd06-9c72d2131961
+X	java:S125"<This block of commented-out lines of code should be removed.(ÑÂôº8†ûñğé1
+~	java:S125""<This block of commented-out lines of code should be removed.(°ÛÍ¾8µàñğé1J$7bb7f1d2-6dba-4e56-a53b-47f3ab31dfb5
+h
+java:S1128"KRemove this unused import 'com.tourconnect.mctcagency.config.GlobalConfig'.(¦úÙá8ûñğé1
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8ûñğé1
+¥
+java:S1128"]Remove this unused import 'org.springframework.cloud.context.config.annotation.RefreshScope'.(­¾î²ûÿÿÿÿ8¹­ñğé1J$3da0aceb-3029-4fd0-8aba-bde0f8e7ba87
+›
+java:S1128"SRemove this unused import 'org.springframework.web.bind.annotation.RestController'.(±íş¡şÿÿÿÿ8º­ñğé1J$9af97fab-3c80-4f93-8339-32dd27f75f1e
