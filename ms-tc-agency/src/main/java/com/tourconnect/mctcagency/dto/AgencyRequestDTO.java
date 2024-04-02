@@ -24,7 +24,7 @@ public record AgencyRequestDTO(
         @Email(message = "Invalid email format")
         String email
 ) {
-    public Agency toAgency(){
+    public Agency toEntity(){
         return Agency.builder()
                 .name(name)
                 .description(description)

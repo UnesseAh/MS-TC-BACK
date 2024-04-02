@@ -10,7 +10,7 @@ public record AgencyResponseDTO(
         String phoneNumber,
         String email
 ) {
-    public static AgencyRequestDTO agencyRequestDTO(Agency agency){
+    public static AgencyRequestDTO toDTO(Agency agency){
         return new AgencyRequestDTO(
                 agency.getName(),
                 agency.getDescription(),
