@@ -3,6 +3,7 @@ package com.tourconnect.mctcagency.controller;
 import com.tourconnect.mctcagency.domain.Agency;
 import com.tourconnect.mctcagency.dto.AgencyRequestDTO;
 import com.tourconnect.mctcagency.dto.AgencyResponseDTO;
+import com.tourconnect.mctcagency.handler.response.GenericResponse;
 import com.tourconnect.mctcagency.service.interfaces.AgencyService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,10 @@ public class AgencyController {
     @PostMapping
     public ResponseEntity<?> createAgency(@RequestBody @Valid AgencyRequestDTO agencyRequestDTO) {
         Agency agency = agencyService.create(agencyRequestDTO.toEntity());
-        return agencyService.create(agency);
+        return GenericResponse.created(
+                AgencyResponseDTO.toDTO(agency),
+                "Agency created successfully!"
+        );
     }
 
     @GetMapping("/{id}")
