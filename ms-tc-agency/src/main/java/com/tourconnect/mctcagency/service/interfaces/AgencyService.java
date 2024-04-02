@@ -11,4 +11,5 @@ public interface AgencyService {
     List<Agency> getAll();
     Agency create(Agency agency);
     Optional<Agency> findById(Long id);
+    void delete(Long id);
 }

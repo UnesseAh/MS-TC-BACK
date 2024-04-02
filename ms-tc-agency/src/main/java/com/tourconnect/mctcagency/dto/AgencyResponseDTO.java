@@ -10,14 +10,14 @@ public record AgencyResponseDTO(
         String phoneNumber,
         String email
 ) {
-    public static AgencyRequestDTO toDTO(Agency agency){
-        return new AgencyRequestDTO(
+    public static AgencyResponseDTO toDTO(Agency agency){
+        return new AgencyResponseDTO(
                 agency.getName(),
                 agency.getDescription(),
                 agency.getCity(),
                 agency.getAddress(),
                 agency.getPhoneNumber(),
-                agency.getPhoneNumber()
+                agency.getEmail()
         );
     }
 }

@@ -28,4 +28,13 @@ public class AgencyServiceImpl implements AgencyService {
         return agencyRepository.findById(id);
     }
 
+    @Override
+    public void delete(Long id) {
+        Optional<Agency> agency = findById(id);
+        if (agency.isEmpty()){
+            throw new IllegalArgumentException("Agency with id " + id + " doesn't exist");
+        }
+        agencyRepository.delete(agency.get());
+    }
+
 }

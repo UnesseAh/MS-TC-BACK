@@ -35,6 +35,10 @@ public class GenericResponse {
         return new ResponseEntity<>(new GenericResponse(HttpStatus.CREATED.value(), data , message), HttpStatus.CREATED);
     }
 
+    public static ResponseEntity<?> deleted(String message){
+        return new ResponseEntity<>(new GenericResponse(HttpStatus.OK.value(), message), HttpStatus.OK);
+    }
+
     public static ResponseEntity<?> notFound(String message){
         return new ResponseEntity<>(new GenericResponse(HttpStatus.NOT_FOUND.value(), message), HttpStatus.NOT_FOUND);
     }
