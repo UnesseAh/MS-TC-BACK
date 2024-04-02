@@ -10,4 +10,5 @@ public interface ActivityService {
     List<Activity> getAll();
     Activity create(Activity activity);
     Optional<Activity> findById(Long id);
+    void delete(Long id);
 }

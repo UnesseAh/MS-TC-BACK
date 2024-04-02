@@ -29,4 +29,9 @@ public class ActivityServiceImpl implements ActivityService {
     public Optional<Activity> findById(Long id) {
         return activityRepository.findById(id);
     }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }
