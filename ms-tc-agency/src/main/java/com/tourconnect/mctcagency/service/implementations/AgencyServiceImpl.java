@@ -21,6 +21,9 @@ public class AgencyServiceImpl implements AgencyService {
     }
 
     public Agency create(Agency agency) {
+        if (agency == null){
+            throw new IllegalArgumentException("Agency can't be null");
+        }
         return agencyRepository.save(agency);
     }
 
