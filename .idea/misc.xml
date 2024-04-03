@@ -19,6 +19,7 @@
         <option value="$PROJECT_DIR$/ms-tc-discovery/pom.xml" />
         <option value="$PROJECT_DIR$/ms-tc-activity/pom.xml" />
         <option value="$PROJECT_DIR$/ms-tc-reservation/pom.xml" />
+        <option value="$PROJECT_DIR$/ms-tc-client/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

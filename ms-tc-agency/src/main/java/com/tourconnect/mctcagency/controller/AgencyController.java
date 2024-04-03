@@ -31,8 +31,9 @@ public class AgencyController {
         }
         List<AgencyResponseDTO> agencyResponseDTOS = new ArrayList<>();
         agencies.forEach(agency -> agencyResponseDTOS.add(AgencyResponseDTO.toDTO(agency)));
-        return GenericResponse.ok(agencyResponseDTOS, "Agencies returned successfully");
-
+        return GenericResponse.ok(
+                agencyResponseDTOS,
+                "Agencies returned successfully");
     }
 
     @PostMapping
@@ -45,19 +46,24 @@ public class AgencyController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id){
+    public ResponseEntity<?> get(@PathVariable Long id){
         Optional<Agency> agency = agencyService.findById(id);
         if(agency.isEmpty()){
             throw new ResourceNotFoundException("Agency with id " + id + " doesn't exist!");
         }
         AgencyResponseDTO agencyResponseDTO = AgencyResponseDTO.toDTO(agency.get());
-        return GenericResponse.ok(agencyResponseDTO, "Agency found");
+        return GenericResponse.ok(
+                agencyResponseDTO,
+                "Agency found"
+        );
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         agencyService.delete(id);
-        return GenericResponse.deleted("Agency deleted successfully");
+        return GenericResponse.deleted(
+                "Agency deleted successfully"
+        );
     }
 
 }
