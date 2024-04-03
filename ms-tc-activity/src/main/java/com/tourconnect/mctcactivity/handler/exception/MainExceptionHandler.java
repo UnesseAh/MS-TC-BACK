@@ -1,6 +1,6 @@
 package com.tourconnect.mctcactivity.handler.exception;
 
-import com.tourconnect.mctcagency.handler.response.GenericResponse;
+import com.tourconnect.mctcactivity.handler.response.GenericResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

@@ -2,10 +2,17 @@ package com.tourconnect.mctcactivity.controller;
 
 import com.tourconnect.mctcactivity.agencies.AgencyRestClient;
 import com.tourconnect.mctcactivity.domain.Activity;
+import com.tourconnect.mctcactivity.dto.ActivityRequestDTO;
+import com.tourconnect.mctcactivity.dto.ActivityResponseDTO;
+import com.tourconnect.mctcactivity.handler.exception.ResourceNotFoundException;
+import com.tourconnect.mctcactivity.handler.response.GenericResponse;
 import com.tourconnect.mctcactivity.model.Agency;
 import com.tourconnect.mctcactivity.service.Interfaces.ActivityService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,28 +27,47 @@ public class ActivityController {
     }
 
     @GetMapping
-    public List<Activity> getAll(){
+    public ResponseEntity<?> getAll(){
         List<Activity> activities = activityService.getAll();
+//        activities.forEach(activity -> {
+//            activity.setAgency(agencyRestClient.findAgency(activity.getAgencyId()));
+//        });
+
+        List<ActivityResponseDTO> activityResponseDTOS = new ArrayList<>();
         activities.forEach(activity -> {
-            activity.setAgency(agencyRestClient.findAgency(activity.getAgencyId()));
+            activityResponseDTOS.add(ActivityResponseDTO.toDTO(activity));
         });
-        return activities;
+        return GenericResponse.ok(activityResponseDTOS, "Activities returned successfully");
     }
 
     @PostMapping
-    public Activity create(Activity activity) {
-        return activityService.create(activity);
+    public ResponseEntity<?> create(@RequestBody @Valid ActivityRequestDTO activityRequestDTO) {
+        Activity activity = activityService.create(activityRequestDTO.toEntity());
+        return GenericResponse.created(
+                ActivityResponseDTO.toDTO(activity),
+                "Activity created successfully!"
+        );
     }
 
     @GetMapping("/{id}")
-    public Optional<Activity> getActivity(@PathVariable Long id){
+    public ResponseEntity<?> getActivity(@PathVariable Long id) {
         Optional<Activity> activity = activityService.findById(id);
 
-        if (activity.isPresent()){
-            Agency agency = agencyRestClient.findAgency(activity.get().getAgencyId());
-            activity.get().setAgency(agency);
+        if(activity.isEmpty()){
+            throw new ResourceNotFoundException("Activity with id " + id + " doesn't exist");
         }
 
-        return activity;
+//        if (activity.isPresent()){
+//            Agency agency = agencyRestClient.findAgency(activity.get().getAgencyId());
+//            activity.get().setAgency(agency);
+//        }
+        ActivityResponseDTO activityResponseDTO = ActivityResponseDTO.toDTO(activity.get());
+        return GenericResponse.ok(activityResponseDTO, "Activity found") ;
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        activityService.delete(id);
+        return GenericResponse.deleted("Activity deleted successfully");
     }
 }
