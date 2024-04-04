@@ -6,10 +6,10 @@ import com.tourconnect.mctcactivity.dto.ActivityRequestDTO;
 import com.tourconnect.mctcactivity.dto.ActivityResponseDTO;
 import com.tourconnect.mctcactivity.handler.exception.ResourceNotFoundException;
 import com.tourconnect.mctcactivity.handler.response.GenericResponse;
-import com.tourconnect.mctcactivity.model.Agency;
 import com.tourconnect.mctcactivity.service.Interfaces.ActivityService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,6 +27,7 @@ public class ActivityController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> getAll(){
         List<Activity> activities = activityService.getAll();
 //        activities.forEach(activity -> {
@@ -41,6 +42,7 @@ public class ActivityController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> create(@RequestBody @Valid ActivityRequestDTO activityRequestDTO) {
         Activity activity = activityService.create(activityRequestDTO.toEntity());
         return GenericResponse.created(
@@ -50,6 +52,7 @@ public class ActivityController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> getActivity(@PathVariable Long id) {
         Optional<Activity> activity = activityService.findById(id);
 
@@ -66,6 +69,7 @@ public class ActivityController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> delete(@PathVariable Long id){
         activityService.delete(id);
         return GenericResponse.deleted("Activity deleted successfully");

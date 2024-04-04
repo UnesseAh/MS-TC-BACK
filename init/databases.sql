@@ -1,3 +1,5 @@
 CREATE DATABASE agencies;
 CREATE DATABASE activities;
 CREATE DATABASE reservations;
+CREATE DATABASE clients;
+CREATE DATABASE keycloak;

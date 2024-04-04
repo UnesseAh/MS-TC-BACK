@@ -8,6 +8,7 @@ import com.tourconnect.mctcagency.handler.response.GenericResponse;
 import com.tourconnect.mctcagency.service.interfaces.AgencyService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class AgencyController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> getAll(){
         List<Agency> agencies = agencyService.getAll();
         if (agencies.isEmpty()){
@@ -37,6 +39,7 @@ public class AgencyController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> create(@RequestBody @Valid AgencyRequestDTO agencyRequestDTO) {
         Agency agency = agencyService.create(agencyRequestDTO.toEntity());
         return GenericResponse.created(
@@ -46,6 +49,7 @@ public class AgencyController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> get(@PathVariable Long id){
         Optional<Agency> agency = agencyService.findById(id);
         if(agency.isEmpty()){
@@ -59,6 +63,7 @@ public class AgencyController {
     }
 
     @DeleteMapping("{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> delete(@PathVariable Long id){
         agencyService.delete(id);
         return GenericResponse.deleted(

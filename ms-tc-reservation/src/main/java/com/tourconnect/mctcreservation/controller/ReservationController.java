@@ -8,6 +8,7 @@ import com.tourconnect.mctcreservation.handler.response.GenericResponse;
 import com.tourconnect.mctcreservation.service.ReservationService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class ReservationController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> getAll(){
         List<Reservation> reservations = reservationService.getAll();
 
@@ -36,6 +38,7 @@ public class ReservationController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> create(@RequestBody @Valid ReservationRequestDTO reservationRequestDTO) {
         Reservation reservation = reservationService.create(reservationRequestDTO.toEntity());
         return GenericResponse.created(
@@ -45,6 +48,7 @@ public class ReservationController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> get(@PathVariable Long id){
         Optional<Reservation> reservation = reservationService.findById(id);
         if (reservation.isEmpty()){
