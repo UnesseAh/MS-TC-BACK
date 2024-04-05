@@ -3,6 +3,7 @@ package com.tourconnect.mctcagency.dto;
 import com.tourconnect.mctcagency.domain.Agency;
 
 public record AgencyResponseDTO(
+        Long id,
         String name,
         String description,
         String city,
@@ -12,6 +13,7 @@ public record AgencyResponseDTO(
 ) {
     public static AgencyResponseDTO toDTO(Agency agency){
         return new AgencyResponseDTO(
+                agency.getId(),
                 agency.getName(),
                 agency.getDescription(),
                 agency.getCity(),
